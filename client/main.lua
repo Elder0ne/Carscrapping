@@ -1,6 +1,9 @@
 local QBCore = exports['qb-core']:GetCoreObject()
 local missionStarted = false 
-local car = nil
+local car = -1216765807
+local ped = PlayerPedId()
+local door = 277255495
+local door2 = 0
 
 
 CreateThread(function()
@@ -60,17 +63,43 @@ CreateThread(function()
 end)
 
 RegisterNetEvent('carpart:client:removeDoors', function()
-CircleZone:Create(vector3(-1157.45, -2007.6, 13.18), 3.0, {
+carZone = CircleZone:Create(vector3(-1157.45, -2007.6, 13.18), 3.0, {
   name="s",
   useZ=false,
   debugPoly=true
 })
-
+    carZone:onPlayerInOut(function(isPointInside)
+      print('Tomato')
+      TriggerEvent('carpart:client:circleCarZone')
+    end)
 end)
 
-RegisterNetEvent('carpart:client:polyZoneTest', function()
+RegisterNetEvent('carpart:client:circleCarZone', function()
     QBCore.Functions.Notify('Remove The Doors', 'primary', 5000)
-    Wait(10000)
+      TaskGoStraightToCoord(ped, -1155.84, -2007.33, 13.18, 138.98, 15.0, -1, 0.0, 0.0)
+    Wait(100)
+    PlayerOpenDoor()
+    Wait(2000)
+    SpawnDoor()
+    Wait(6000)
     PolyZone:destroy()
+end)
+
+function SpawnDoor()
+  door2 = CreateObject(door, -1155.83, -2007.33, 13.18, true, false, false)
+  AttachEntityToEntity(door2, PlayerPedId(), GetPedBoneIndex(PlayerPedId(), 57005), 0.14, 0, -0.01, 90.0, -90.0, 180.0, true, true, false, true, 1, true)
+  print('yes')
+end
+
+function PlayerOpenDoor()
+  print(ped)
+  print(car)
+  TaskOpenVehicleDoor(ped, car, 1, -1, 20)
+end
+
+RegisterNetEvent('carscrap:client:devTools', function()
+  DetachEntity(door2, false, false)
+  DeleteEntity(door2)
+  ClearPedTasksImmediately(ped)
 end)
 
