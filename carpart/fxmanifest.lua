@@ -5,9 +5,12 @@ author 'Bo Ek'
 description 'Car Part Delivery Job'
 version '1.0.1'
 
--- What to run
 client_scripts {
-    '@PolyZone/BoxZone.lua',
+  '@PolyZone/client.lua',
+  '@PolyZone/BoxZone.lua',
+  '@PolyZone/EntityZone.lua',
+  '@PolyZone/CircleZone.lua',
+  '@PolyZone/ComboZone.lua',
     'client/main.lua',
 }
 
