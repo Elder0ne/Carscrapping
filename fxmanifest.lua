@@ -3,7 +3,7 @@ games { 'gta5' }
 
 author 'Bo Ek'
 description 'Car Part Delivery Job'
-version '1.0.1'
+version '1.0.0'
 
 client_scripts {
   '@PolyZone/client.lua',

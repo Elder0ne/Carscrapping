@@ -83,7 +83,7 @@ RegisterNetEvent('carscrap:client:circleCarZone', function()
     FreezeEntityPosition(ped, true)
     PlayerOpenDoor()
     Wait(6000)
-    PolyZone:destroy()
+    carZone:destroy()
 end)
 
 RegisterNetEvent('carscrap:client:doAnimation', function()
@@ -110,16 +110,17 @@ QBCore.Functions.Progressbar("doorRemoval", 'Removing the door', 5500, false, tr
 end)
 
 RegisterNetEvent('carscrap:client:deliverBox', function()
-deliver = BoxZone:Create(vector3(-1145.34, -2014.98, 13.18), 15.8, 5, {
-  name="box",
-  heading=315,
-  debugPoly=true,
-  minZ = 12.7, 
-  maxZ = 16.9, 
+  print(ped)
+partDeliver = BoxZone:Create(vector3(-1145.44, -2014.97, 13.18), 16.0, 5, {
+  name="work",
+  heading=314,
+  debugPoly=true
 })
-deliver:onPlayerInOut(function(isPointInside)
-TriggerServerEvent('carscrap:server:giveRewards')
+partDeliver:onPlayerInOut(function(isPointInside)
+TriggerEvent('carscrap:client:finishScrap')
+print('yee')
 
+  end)
 end)
 
 RegisterNetEvent('carscrap:client:finishScrap', function()
@@ -134,8 +135,11 @@ RegisterNetEvent('carscrap:client:finishScrap', function()
       flags = 16,
   }, {}, {}, function() -- Play When Done
       TriggerServerEvent('carscrap:server:giveRewards')
+      QBCore.Functions.Notify('You Got $125 From Scrapping The Car', 'success', 5000) 
+          TriggerEvent('carscrap:client:devTools')
+      partDeliver:destroy()
   end, function() -- Play When Cancel
-      QBCore.Functions.Notify('You canceled', error, 5000) 
+      QBCore.Functions.Notify('You Canceled', error, 5000) 
   end)
 end)
 
@@ -143,7 +147,6 @@ RegisterNetEvent('carscrap:client:devTools', function()
   DetachEntity(door2, false, false)
   DeleteEntity(door2)
   ClearPedTasksImmediately(ped)
-  end)
 end)
 
 
