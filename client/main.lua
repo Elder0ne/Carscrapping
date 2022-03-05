@@ -58,11 +58,6 @@ RegisterNetEvent('carscrap:client:startJob', function()
   TriggerEvent('carscrap:client:removeDoors')
 end)
 
-RegisterNetEvent('carscrap:client:endJob', function()
-  missionStarted = false
-  
-end)
-
 RegisterNetEvent('carscrap:client:removeDoors', function()
 carZone = CircleZone:Create(vector3(-1157.45, -2007.6, 13.18), 3.0, {
   name="s",
