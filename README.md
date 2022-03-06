@@ -8,6 +8,10 @@ The Script is a Car Scrapping Script where you would remove 1 door on a vehicle 
 to deliver the door, and player gets the money
 
 
+Dependencies:
+QB-Target 
+PolyZone
+
 This is what i use to spawn the ped, https://github.com/sjpfeiffer/ped_spawner feel free to create the ped in any way
 Here's how i spawn the ped in the config.lua of the resource ^^
 
