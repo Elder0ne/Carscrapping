@@ -15,7 +15,6 @@ end
 function SpawnDoor()
   door2 = CreateObject(door, -1155.83, -2007.33, 13.18, true, false, false)
   AttachEntityToEntity(door2, PlayerPedId(), GetPedBoneIndex(PlayerPedId(), 57005), 0.14, 0, -0.01, 90.0, -90.0, 180.0, true, true, false, true, 1, true)
-  print('yes')
 end
 
 
@@ -65,7 +64,6 @@ carZone = CircleZone:Create(vector3(-1157.45, -2007.6, 13.18), 3.0, {
   debugPoly=true
 })
     carZone:onPlayerInOut(function(isPointInside)
-      print('Tomato')
       TriggerEvent('carscrap:client:circleCarZone')
     end)
 end)
@@ -73,7 +71,6 @@ end)
 RegisterNetEvent('carscrap:client:circleCarZone', function()
     QBCore.Functions.Notify('Remove The Doors', 'primary', 5000)
       TaskGoStraightToCoord(ped, -1155.84, -2007.33, 13.18, 138.98, 15.0, -1, 0.0, 0.0)
-      print('damnit')
     Wait(5000)
     FreezeEntityPosition(ped, true)
     PlayerOpenDoor()
@@ -105,7 +102,6 @@ QBCore.Functions.Progressbar("doorRemoval", 'Removing the door', 5500, false, tr
 end)
 
 RegisterNetEvent('carscrap:client:deliverBox', function()
-  print(ped)
 partDeliver = BoxZone:Create(vector3(-1145.44, -2014.97, 13.18), 16.0, 5, {
   name="work",
   heading=314,
@@ -113,7 +109,6 @@ partDeliver = BoxZone:Create(vector3(-1145.44, -2014.97, 13.18), 16.0, 5, {
 })
 partDeliver:onPlayerInOut(function(isPointInside)
 TriggerEvent('carscrap:client:finishScrap')
-print('yee')
 
   end)
 end)
